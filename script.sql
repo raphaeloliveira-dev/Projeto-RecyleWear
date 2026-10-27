@@ -1,5 +1,5 @@
 CREATE DATABASE recyclewear;
-USE recyclewear
+USE recyclewear;
 
 CREATE TABLE categoria (
 id_categoria INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,9 +32,10 @@ INSERT INTO usuario (nome, email, senha, cpf) VALUES
 CREATE TABLE produto (
 id_produto INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100) NOT NULL,
-preco DECIMAL(10) NOT NULL,
+preco DECIMAL(10,2) NOT NULL,
 estoque INT NOT NULL DEFAULT 0,
-id_categoria INT NOT NULL
+id_categoria INT NOT NULL,
+FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 
 INSERT INTO produto (nome, preco, estoque, id_categoria) VALUES
@@ -43,6 +44,14 @@ INSERT INTO produto (nome, preco, estoque, id_categoria) VALUES
 100,
 1
 );
+
+INSERT INTO produto (nome, preco, estoque, id_categoria) VALUES
+( 'Camiseta Polo',
+89.99,
+80,
+1
+);
+
 
 CREATE TABLE compra (
     id_compra INT AUTO_INCREMENT PRIMARY KEY,
